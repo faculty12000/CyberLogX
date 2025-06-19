@@ -24,7 +24,7 @@
             <h2>Uploaded Logs</h2>
             {% for log in logs %}
                 <div class="log-item">
-                    {{ log.file.name }} ({{ log.uploaded_at }})
+                    <a href="{% url 'view_log' log.id %}">{{ log.file.name }}</a> ({{ log.uploaded_at }})
                 </div>
             {% empty %}
                 <p>No logs uploaded yet.</p>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Log - {{ log.file.name }}</title>
+    <style>
+        body { background: #181a1b; color: #e0e0e0; font-family: 'Fira Mono', monospace; margin: 0; padding: 0; }
+        .container { max-width: 900px; margin: 40px auto; padding: 32px; background: #232526; border-radius: 8px; }
+        h1 { color: #7fffd4; }
+        pre { background: #181a1b; color: #e0e0e0; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        a, button { color: #7fffd4; }
+        .ai-result { background: #222; color: #7fffd4; padding: 16px; border-radius: 6px; margin-top: 2em; }
+        button {
+            background: #7fffd4;
+            color: #181a1b;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #5fd1b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Viewing: {{ log.file.name }}</h1>
+        <a href="{% url 'home' %}">&larr; Back to Dashboard</a>
+        <h2>Log Content</h2>
+        <pre>{{ content }}</pre>
+        <form method="post" style="margin-top:2em;">
+            {% csrf_token %}
+            <button type="submit" name="analyze">Analyze with AI</button>
+        </form>
+        {% if ai_result %}
+            <div class="ai-result">
+                <h2>AI Analysis Result</h2>
+                <pre>{{ ai_result }}</pre>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

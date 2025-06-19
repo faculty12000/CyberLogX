@@ -1,0 +1,4 @@
+2025-06-19 12:01:23 INFO User admin logged in from 192.168.1.10
+2025-06-19 12:02:10 WARNING Failed login attempt for user root from 192.168.1.15
+2025-06-19 12:03:45 ERROR Database connection timeout
+2025-06-19 12:04:01 INFO User guest logged out
