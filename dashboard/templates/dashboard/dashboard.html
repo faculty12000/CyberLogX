@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CyberLogX Dashboard</title>
+    <style>
+        body { background: #181a1b; color: #e0e0e0; font-family: 'Fira Mono', monospace; margin: 0; padding: 0; }
+        .container { max-width: 900px; margin: 40px auto; padding: 32px; background: #232526; border-radius: 8px; }
+        h1 { color: #7fffd4; }
+        .log-list { margin-top: 2em; }
+        .log-item { margin-bottom: 1em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CyberLogX Threat Detection Dashboard</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="logfile">Upload Log File:</label>
+            <input type="file" name="logfile" id="logfile" required>
+            <button type="submit">Upload</button>
+        </form>
+        <div class="log-list">
+            <h2>Uploaded Logs</h2>
+            {% for log in logs %}
+                <div class="log-item">
+                    {{ log.file.name }} ({{ log.uploaded_at }})
+                </div>
+            {% empty %}
+                <p>No logs uploaded yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
